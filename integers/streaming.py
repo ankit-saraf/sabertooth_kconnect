@@ -7,11 +7,12 @@ api_key = open('/home/akkey/Desktop/Django-projects/django-sockets/demo1/integer
 access_token = "jnVhYMfW2d9jTm04QEPxUsHI8mLfU1W7"
 tokens = [5215745, 633601, 1195009, 779521, 758529, 1256193, 194561, 1837825, 952577, 1723649, 3930881, 4451329, 593665, 3431425, 2905857, 3771393, 3789569, 3463169, 381697, 54273, 415745, 2933761, 3580417, 49409, 3060993, 4464129, 3375873, 4574465, 636673, 3721473, 2796801]
 
+data = []
 kws = KiteTicker(api_key, access_token)
 def on_ticks(ws, ticks):
-    print(ticks, "\n")
+    print(ticks[0], "\n")
     # logging.debug("Ticks: {}".format(ticks[0]))
-    return ticks
+    data.extend(ticks)
 
 
 def on_connect(ws, response):
