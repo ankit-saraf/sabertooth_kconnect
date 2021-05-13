@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="padding-top: 40vh;">
+    <!-- <h1 style="text-align: center;">"<span id="quote"></span>"</h1> -->
+    <p style="text-align: center;"><span id="author"></span></p>
+    </div>
+    
+</body>
+<script>
+    var socket = new WebSocket('ws://localhost:8000/ws/url/');
+    socket.onmessage = function(event){
+        var data = JSON.parse(event.data);
+        console.log(data);
+        document.querySelector('#author').innerText = data.message;
+    }
+</script>
+</html>
