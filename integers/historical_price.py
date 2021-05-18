@@ -1,13 +1,14 @@
-import time
-import datetime
-import pandas as pd
+from datetime import date
+from nsepy import get_history
 
-code = 'TSLA'
-period1 = int(time.mktime(datetime.datetime(2021, 4, 1, 23, 59).timetuple()))
-period2 = int(time.mktime(datetime.datetime(2021, 4, 30, 23, 59).timetuple()))
-interval = '1d'
 
-query = f'https://query1.finance.yahoo.com/v7/finance/download/{code}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true'
+def history_data(symbol, start, end):
+    s = start.split(',')
+    e = end.split(',')
+    data = get_history(symbol=symbol,
+                    start=date(int(s[0]), int(s[1]), int(s[2])),
+                    end=date(int(e[0]), int(e[1]), int(e[2])))
+    
+    return data
 
-df = pd.read_csv(query)
-print(df)
+print(history_data('IRFC', "2021,1,1", "2021,1,15" ))
